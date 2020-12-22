@@ -33,6 +33,7 @@ const parser = (html: HTML): PETION | undefined => {
     status,
     title,
     petition_idx: undefined,
+    keywords: undefined,
   }
 }
 

@@ -38,6 +38,7 @@ export type PETION = {
   status: STATUS
   title: TITLE
   petition_idx: PETITION_IDX | undefined
+  keywords: string[] | undefined
 }
 
 export type PETION_LIST = PETION[]
