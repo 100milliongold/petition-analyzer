@@ -33,6 +33,7 @@ const petitions_scraper = async (
         status,
         title,
         petition_idx,
+        keywords: undefined
       }
     } else {
       return undefined
