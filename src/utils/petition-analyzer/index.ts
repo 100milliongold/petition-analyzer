@@ -1,4 +1,7 @@
 import { INDEX, PETION_LIST, PETION, PETITION_IDX_LIST } from 'typings'
+
+import scraper from 'petitions_scraper_npm'
+
 import { petitions_get_list, get_nouns } from 'utils'
 import _ from 'lodash'
 
@@ -9,13 +12,16 @@ import _ from 'lodash'
  * @param end 
  */
 const petition_analyzer = async (start: INDEX, end: INDEX) => {
-  const data = await petitions_get_list(start, end)
+  
+  const data = await scraper(start, end)
 
   const res = await Promise.all(_(data)
     .map('content')
     .map(async content => await get_nouns(content))
     .value()
   )
+
+  
 
   const keyword = 
     _(res)

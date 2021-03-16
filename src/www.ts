@@ -1,7 +1,7 @@
 import App from './App'
 import * as express from 'express'
 
-const port: number = Number(process.env.PORT) || 3000
+const port: number = Number(process.env.PORT) || 8080
 const app: express.Application = new App().app
 
 app
