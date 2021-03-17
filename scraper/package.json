@@ -24,6 +24,7 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.5",
     "fxjs": "^0.21.2",
+    "petitions_scraper_npm": "^1.0.4",
     "puppeteer": "^8.0.0"
   }
 }
