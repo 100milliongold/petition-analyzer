@@ -17,7 +17,7 @@ const parser_html = (html : string) => {
         const end_date = $(element).find('.bl_wrap .bl_date').text().replace("청원 종료일" , "").trim();
         const pageNo = $(element).find('.bl_wrap .bl_subject a').attr("href")?.replace("/petitions/" , "").trim();
         
-        const date = new Date(end_date)        
+        const date = new Date(`${end_date}T00:00:00+09:00`);    
         if(end_date && pageNo){
             res.push({
                 end_date : date,
