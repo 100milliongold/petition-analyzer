@@ -2,15 +2,25 @@ import { getFirstIndex } from "utils";
 import { scraper } from "petitions_scraper_npm";
 import { PETION } from "petitions_scraper_npm/dist/typings";
 
-const S = require("fxjs/Strict");
+import db from './db';
+import { Board } from "model";
+
+import { config } from 'dotenv'
+
+ 
+const Strict = require("fxjs/Strict");
 const L = require("fxjs/Lazy");
 const C = require("fxjs/Concurrency");
 
-const { go, delay,  } = S
+const { go, delay, each , log, tap } = Strict
 
 const day_length = 1
 
 const delay_count = 1000 * 3
+
+
+config();
+
 
 const find_data = new Date();
 find_data.setDate( find_data.getDate() + 30 - 1 - day_length);
@@ -21,16 +31,43 @@ find_data.setMilliseconds(0)
 // console.log(today);
 
 getFirstIndex().then( async (index : number) => {
-    const list : PETION[]  = await go(
+    
+    db();
+
+    await go(
         L.range(Infinity),
         L.map(delay(delay_count)),
         L.map((o : number) => index - o),
         L.map((o : number) => scraper(o)),
-        L.take(3),
-        C.takeAll,
+        L.take(100),
+        
+        each(({
+            begin,
+            category,
+            content,
+            crawled_at,
+            end,
+            num_agree,
+            status,
+            title,
+            petition_idx
+        } : PETION) => {
+            const board = new Board({
+                begin,
+                category,
+                content,
+                crawled_at,
+                end,
+                num_agree,
+                status,
+                title,
+                petition_idx
+            })
+            board.save().then(() => `${petition_idx} save`)
+        }),
     )
 
-    console.log(list);
+    // console.log(list);
     
 
 })
