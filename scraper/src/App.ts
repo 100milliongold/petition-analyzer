@@ -28,7 +28,7 @@ find_data.setHours(0)
 find_data.setMinutes(0)
 find_data.setSeconds(0)
 find_data.setMilliseconds(0)
-// console.log(today);
+// console.log(find_data);
 
 getFirstIndex().then( async (index : number) => {
     
@@ -39,8 +39,7 @@ getFirstIndex().then( async (index : number) => {
         L.map(delay(delay_count)),
         L.map((o : number) => index - o),
         L.map((o : number) => scraper(o)),
-        L.take(100),
-        
+        L.take(500),
         each(({
             begin,
             category,
@@ -63,7 +62,7 @@ getFirstIndex().then( async (index : number) => {
                 title,
                 petition_idx
             })
-            board.save().then(() => `${petition_idx} save`)
+            board.save().then(() => console.log(`${petition_idx} save!!`))
         }),
     )
 
