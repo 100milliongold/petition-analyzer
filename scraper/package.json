@@ -12,6 +12,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/cheerio": "^0.22.27",
+    "@types/dateformat": "^3.0.1",
     "@types/jest": "^26.0.21",
     "jest": "^26.6.3",
     "nodemon": "^2.0.6",
@@ -23,10 +24,12 @@
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.5",
+    "dateformat": "^4.5.1",
     "dotenv": "^8.2.0",
     "fxjs": "^0.21.2",
-    "mongoose": "^5.12.0",
+    "hive-driver": "^0.1.4",
     "petitions_scraper_npm": "^1.0.5",
+    "presto-client": "^0.9.0",
     "puppeteer": "^8.0.0"
   }
 }
